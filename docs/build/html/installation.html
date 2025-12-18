@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation &#8212; UnTANGLeD  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="clusterOptimiser" href="clusterOptimiser.html" />
+    <link rel="prev" title="Welcome to UnTANGLeD R Package’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
+<p>This section covers the installation and setup of the UnTANGLeD R package. The package requires several R dependencies for clustering analysis, data manipulation, and visualization.</p>
+<section id="system-requirements">
+<span id="id1"></span><h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>R version &gt;= 4.0.0</p></li>
+</ul>
+</section>
+<section id="r-dependencies">
+<h2>R Dependencies<a class="headerlink" href="#r-dependencies" title="Link to this heading">¶</a></h2>
+<p>Install the required R packages from CRAN:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core dependencies for clustering and matrix operations</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;Seurat&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;cluster&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;data.table&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;tidyr&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;Matrix&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Network analysis functions required for conservation analyses</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;DirectedClustering&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;RcppAlgos&quot;</span><span class="p">)</span>
+
+<span class="c1"># Parallel processing</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;parallel&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;doParallel&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bioconductor-dependencies">
+<h2>Bioconductor Dependencies<a class="headerlink" href="#bioconductor-dependencies" title="Link to this heading">¶</a></h2>
+<p>Some functions may require Bioconductor packages. Install Bioconductor if not already available:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+
+<span class="c1"># Install any required Bioconductor packages</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;your_bioc_package_name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="installing-untangled-r-package">
+<h2>Installing UnTANGLeD R Package<a class="headerlink" href="#installing-untangled-r-package" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Download the UnTANGLeD R package source file (e.g., untangled_1.0.0.tar.gz) from the repository</p></li>
+<li><p>Install the package from the source file:</p></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;path/to/untangled_1.0.0.tar.gz&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;source&quot;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">untangled</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="data-preparation-requirements">
+<h2>Data Preparation Requirements<a class="headerlink" href="#data-preparation-requirements" title="Link to this heading">¶</a></h2>
+<p>Before using UnTANGLeD, ensure your data meets these requirements:</p>
+<p><strong>For General High-dimensional Data:</strong></p>
+<ul class="simple">
+<li><p>Numeric data matrix with features as rows and samples as columns stored as a Seurat Object</p></li>
+<li><p>Data should be normalized and scaled appropriately</p></li>
+<li><p>Missing values handled (removal or imputation)</p></li>
+</ul>
+<p><strong>Memory Considerations:</strong></p>
+<p>UnTANGLeD builds consensus matrices that scale quadratically with the number of samples. For large datasets:</p>
+<ul class="simple">
+<li><p>Ensure adequate RAM (consensus matrix for 5,000 samples requires ~1GB)</p></li>
+<li><p>Use appropriate <code class="docutils literal notranslate"><span class="pre">max_clusters</span></code> parameter to limit computational burden</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">UnTANGLeD</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#r-dependencies">R Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bioconductor-dependencies">Bioconductor Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-untangled-r-package">Installing UnTANGLeD R Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-preparation-requirements">Data Preparation Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clusterOptimiser.html">clusterOptimiser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untangled.html">untangled</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conservation.html">Conservation Analysis</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to UnTANGLeD R Package’s documentation!</a></li>
+      <li>Next: <a href="clusterOptimiser.html" title="next chapter">clusterOptimiser</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Qiongyi Zhao & Shaine Bao.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/installation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

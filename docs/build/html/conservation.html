@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Conservation Analysis &#8212; UnTANGLeD  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="untangled" href="untangled.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="conservation-analysis">
+<h1>Conservation Analysis<a class="headerlink" href="#conservation-analysis" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>The conservation analysis functions in UnTANGLeD evaluates clustering results across different datasets, conditions, or biological contexts. It assesses whether clusters identified in one dataset are preserved in another, identifying reproducible patterns and clusters for further investigation</p>
+</section>
+<section id="gcc-global-clustering-coefficient-analysis">
+<h2>gcc - Global Clustering Coefficient Analysis<a class="headerlink" href="#gcc-global-clustering-coefficient-analysis" title="Link to this heading">¶</a></h2>
+<p><strong>Description:</strong>
+<code class="docutils literal notranslate"><span class="pre">gcc</span></code> calculates the global clustering coefficient to measure the degree to which samples from query cluster also cluster together in the reference dataset. For each cluster in reference dataset, gcc identifies all possible combinations of triplets and count how many of these triplets remain in the query cluster. The conservation score is the ratio of preserved triplets to total possible triplets. Bootstrapping is used to determine statistical significance on whether observed clustering patterns exceed random expectations.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">query</span></code>: A string path to an RDS file containing subgroup assignments derived from UnTANGLeD analysis. This serves as the query clustering to be evaluated for conservation.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference</span></code>: A string path to an RDS file containing reference cluster assignments, also derived from UnTANGLeD analysis. This provides the reference clustering framework for comparison.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: (Optional) A character string specifying the output file path. Default is <code class="docutils literal notranslate"><span class="pre">&quot;GCC_results.txt&quot;</span></code>.</p></li>
+</ul>
+<p><strong>Returns:</strong>
+Data frame with comprehensive GCC statistics:
+- <code class="docutils literal notranslate"><span class="pre">cluster</span></code>: Cluster identifier from query dataset
+- <code class="docutils literal notranslate"><span class="pre">nconditions</span></code>: The number of conditions or samples within each cluster.
+- <code class="docutils literal notranslate"><span class="pre">topclus</span></code>: The cluster in reference with the highest similarity to the current cluster in query. This identifies the closest matching cluster in the reference framework, indicating the degree of conservation or divergence between query and reference.
+- <code class="docutils literal notranslate"><span class="pre">gcc</span></code>: The global clustering coefficient for the cluster (0 to 1).
+- <code class="docutils literal notranslate"><span class="pre">gcc_av</span></code>: The average GCC obtained from bootstrap samples.
+- <code class="docutils literal notranslate"><span class="pre">gcc_sd</span></code>: The standard deviation of the GCC from bootstrap samples.
+- <code class="docutils literal notranslate"><span class="pre">zscore</span></code>: The z-score evaluating the deviation of observed GCC from bootstrap expectations.
+- <code class="docutils literal notranslate"><span class="pre">pval</span></code>: The p-value assessing the significance of the observed GCC compared to bootstrap samples.</p>
+<p><strong>Usage Example:</strong></p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assess conservation of cell line A clusters in cell line S</span>
+<span class="n">gcc_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">gcc</span><span class="p">(</span>
+<span class="w">    </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Dataset1_UnTANGLeD_Output/_subgrp.rds&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Dataset2_UnTANGLeD_Output/dataset2_subgrp.rds&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;conservation_Dataset1_in_Dataset2.txt&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="cmc-consensus-matrix-conservation">
+<h2>cmc - Consensus Matrix Conservation<a class="headerlink" href="#cmc-consensus-matrix-conservation" title="Link to this heading">¶</a></h2>
+<p><strong>Description:</strong>
+<code class="docutils literal notranslate"><span class="pre">cmc</span></code> (Consensus Matrix Conservation) directly compares cluster assignments against the consensus matrix of another dataset. This method assesses whether samples that cluster together in one dataset show high consensus values in another dataset’s consensus matrix. Bootstrapping is used to determine statistical significance on whether observed clustering patterns exceed random expectations.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">query</span></code>: Path to RDS file containing the consensus matrix from the query dataset</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference</span></code>: Path to RDS file containing reference cluster assignments</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: (Optional) Output file path. Default is <code class="docutils literal notranslate"><span class="pre">&quot;CMC_results.txt&quot;</span></code></p></li>
+</ul>
+<p><strong>Returns:</strong>
+Conservation scores for each cluster:
+- <code class="docutils literal notranslate"><span class="pre">cluster</span></code>: Cluster identifier.
+- <code class="docutils literal notranslate"><span class="pre">score</span></code>: Mean conservation score within the cluster.
+- <code class="docutils literal notranslate"><span class="pre">expected</span></code>: Expected score from bootstrap analysis.
+- <code class="docutils literal notranslate"><span class="pre">exp_sd</span></code>: Standard deviation of expected scores.
+- <code class="docutils literal notranslate"><span class="pre">zscore</span></code>: Standardized conservation score.
+- <code class="docutils literal notranslate"><span class="pre">pval</span></code>: Statistical significance of conservation.</p>
+<p><strong>Usage Example:</strong></p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Consensus matrix conservation analysis</span>
+<span class="n">cmc_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cmc</span><span class="p">(</span>
+<span class="w">    </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dataset1/consensus_matrix.rds&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dataset2/gene_subgrp.rds&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;consensus_conservation.txt&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">UnTANGLeD</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusterOptimiser.html">clusterOptimiser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untangled.html">untangled</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Conservation Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gcc-global-clustering-coefficient-analysis">gcc - Global Clustering Coefficient Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cmc-consensus-matrix-conservation">cmc - Consensus Matrix Conservation</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="untangled.html" title="previous chapter">untangled</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Qiongyi Zhao & Shaine Bao.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/conservation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

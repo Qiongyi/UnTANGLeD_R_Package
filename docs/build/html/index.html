@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to UnTANGLeD R Package’s documentation! &#8212; UnTANGLeD  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="welcome-to-untangled-r-package-s-documentation">
+<h1>Welcome to UnTANGLeD R Package’s documentation!<a class="headerlink" href="#welcome-to-untangled-r-package-s-documentation" title="Link to this heading">¶</a></h1>
+<p>This guide provides instructions on using the UnTANGLeD R package for unsupervised consensus clustering analysis of high-dimensional biological data.</p>
+<section id="contents">
+<h2>Contents:<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#r-dependencies">R Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#bioconductor-dependencies">Bioconductor Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installing-untangled-r-package">Installing UnTANGLeD R Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#data-preparation-requirements">Data Preparation Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clusterOptimiser.html">clusterOptimiser</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#methodology">Methodology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#input-and-output">Input and Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#optimal-cluster-selection">Optimal Cluster Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#considerations-and-troubleshooting">Considerations and Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clusterOptimiser.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="untangled.html">untangled</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#methodology">Methodology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#input-and-output">Input and Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#cluster-quality-metrics">Cluster Quality Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#interpreting-results">Interpreting Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#considerations-and-troubleshooting">Considerations and Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="untangled.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conservation.html">Conservation Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conservation.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conservation.html#gcc-global-clustering-coefficient-analysis">gcc - Global Clustering Coefficient Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conservation.html#cmc-consensus-matrix-conservation">cmc - Consensus Matrix Conservation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="about-untangled">
+<h1>About UnTANGLeD<a class="headerlink" href="#about-untangled" title="Link to this heading">¶</a></h1>
+<p>UnTANGLeD is an unsupervised consensus clustering and prioritisation pipeline that:</p>
+<ul class="simple">
+<li><p>Performs iterative clustering across multiple granularity levels</p></li>
+<li><p>Builds consensus matrices from co-clustering frequencies</p></li>
+<li><p>Determines optimal cluster numbers using silhouette analysis</p></li>
+<li><p>Evaluates cluster quality through intra cluster correlation and robustness metrics</p></li>
+<li><p>Assesses conservation across biological contexts</p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Install and load the package</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">clusterOptimiser()</span></code> on your preprocessed data</p></li>
+<li><p>Select optimal cluster number from the silhouette plot</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">untangled()</span></code> with the chosen cluster number</p></li>
+<li><p>Evaluate clusters using conservation analysis functions (cmc or gcc)</p></li>
+</ol>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">UnTANGLeD</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusterOptimiser.html">clusterOptimiser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untangled.html">untangled</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conservation.html">Conservation Analysis</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="installation.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Qiongyi Zhao & Shaine Bao.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
