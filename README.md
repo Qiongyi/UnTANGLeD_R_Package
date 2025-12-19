@@ -13,24 +13,23 @@ UnTANGLeD is suitable for researchers working on:
 
 
 ## Workflow
-## Workflow
 
 ```text
 Seurat object (normalized and scaled)
         |
         v
-clusterOptimiser()
+1. clusterOptimiser()
   - run Seurat clustering across a range of resolutions
   - build co-clustering consensus matrix
   - silhouette scan + plateau detection -> optimal k
         |
         v
-untangled(optimal_clusters = k)
+2. untangled(optimal_clusters = k)
   - hierarchical clustering on consensus-derived distance
   - final cluster assignment + QC summary (silhouette, within-cluster correlation)
         |
         v
-Conservation across contexts (optional)
+3. Conservation across contexts (optional)
   - cmc(): consensus matrix conservation
   - gcc(): global clustering coefficient
 ```
@@ -65,5 +64,5 @@ The complete UnTANGLeD R Package manual is available via [readthedocs](https://u
 ## Citing UnTANGLeD R Package
 If you use or discuss the UnTANGLeD R Package in your research, please cite the corresponding publication:
 
-Coming soon
+***Coming soon***
 
