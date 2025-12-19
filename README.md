@@ -1,8 +1,7 @@
 # UnTANGLeD R Package
 
 ## Overview
-**UnTANGLeD** is an unsupervised consensus clustering and prioritisation pipeline designed for the analysis of high-dimensional biological data.  
-It enables robust identification of stable clusters across multiple resolutions and provides quantitative metrics to evaluate clustering quality and biological conservation.
+**UnTANGLeD** is an unsupervised consensus clustering and prioritisation pipeline designed for the analysis of high-dimensional biological data. It enables robust identification of stable clusters across multiple resolutions and provides quantitative metrics to evaluate clustering quality and biological conservation.
 
 UnTANGLeD is suitable for researchers working on:
 - Unsupervised clustering of high-dimensional biological datasets
@@ -14,7 +13,10 @@ UnTANGLeD is suitable for researchers working on:
 
 
 ## Workflow
-Seurat object (normalized and scaled)  
+## Workflow
+
+```text
+Seurat object (normalized and scaled)
         |
         v
 clusterOptimiser()
@@ -31,6 +33,7 @@ untangled(optimal_clusters = k)
 Conservation across contexts (optional)
   - cmc(): consensus matrix conservation
   - gcc(): global clustering coefficient
+```
 
 ---
 
