@@ -64,6 +64,9 @@ Parameters
 
 - ``thresh_frac``: (Optional) A numeric value between 0 and 1 specifying the threshold fraction for plateau detection. This parameter defines how strict the plateau definition is by setting the cutoff as a fraction of the maximum rolling gain. For example, a threshold of 0.1 means the optimal cluster number is identified when the silhouette score no longer increases by more than 10% of the mean silhouette increase over the last three consecutive cluster numbers. Default is ``0.01``.
 
+..
+
+- ``use_sparse``: (Optional) A logical value indicating whether to construct the consensus matrix using a sparse matrix representation. Default is ``FALSE``. When set to ``TRUE``, the consensus matrix is built using sparse matrix operations. This option is useful when analysing large single-cell omics datasets with many samples. Note that downstream optimisation steps (hierarchical clustering and silhouette analysis) may still require dense distance computations.
 
 Optimal Cluster Selection
 -------------------------
@@ -135,6 +138,15 @@ Usage Examples
                      thresh_frac = 0.1)
 
 
+**Example 5: Memory-efficient Consensus Matrix Construction**
+
+.. code-block:: R
+
+    # Use sparse matrix implementation for large datasets
+    clusterOptimiser(seu = seu,
+                     outdir = "large_dataset_analysis",
+                     use_sparse = TRUE)
+
 
 Considerations and Troubleshooting
 ----------------------------------
@@ -143,6 +155,9 @@ Considerations and Troubleshooting
 - Resolution range: more resolutions = longer runtime
 - max_clusters: higher values = Extended silhouette computation
 - Typical runtime: seconds to over 10 minutes for larger datasets
+
+**Memory Usage:**
+- For large datasets, setting ``use_sparse = TRUE`` can reduce memory usage during consensus matrix construction.
 
 **Optimization Tips:**
 1. Start with default parameters for initial exploration

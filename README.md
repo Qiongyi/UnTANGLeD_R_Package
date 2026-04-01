@@ -56,7 +56,7 @@ gcc_results <- gcc(query = "path/to/query_sub_grp.rds", reference = "path/to/ref
 
 
 ## Download the Latest Release
-You can download the latest release of UnTANGLeD [here](https://github.com/Qiongyi/UnTANGLeD_R_Package/releases/latest/download/untangled_1.0.0.tar.gz).
+You can download the latest release of UnTANGLeD [here](https://github.com/Qiongyi/UnTANGLeD_R_Package/releases/latest).
 
 ## Documentation
 The complete UnTANGLeD R Package manual is available via [readthedocs](https://untangled-r-package.readthedocs.io/en/latest/).
